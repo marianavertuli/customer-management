@@ -1,14 +1,15 @@
 import { Container } from "@/components/container";
-import { redirectIfLoggedOut } from "@/utils/session-utils";
 import Link from "next/link";
 import { CustomersCard } from "./components/card";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export default async function Customers() {
-    await redirectIfLoggedOut();
     const session = await getServerSession(authOptions);
+    if (!session || !session.user)
+        redirect("/");
 
     const customers = await prisma.customer.findMany({where: { userId: { equals: session?.user.id }}});
 

@@ -1,10 +1,14 @@
 import { Container } from "@/components/container";
-import { redirectIfLoggedOut } from "@/utils/session-utils";
 import Link from "next/link";
 import { CustomerForm } from "../components/form";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export default async function NewCustomer() {
-    await redirectIfLoggedOut();
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user)
+        redirect("/");
 
     return (
         <Container>

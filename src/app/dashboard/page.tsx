@@ -1,10 +1,23 @@
 import { Container } from "@/components/container";
-import { redirectIfLoggedOut } from "@/utils/session-utils";
 import Link from "next/link";
 import { DashboardTicket } from "./components/ticket";
+import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
-    await redirectIfLoggedOut();
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user)
+        redirect("/");
+
+    const tickets = await prisma.ticket.findMany(
+        {where: {
+            userId: session?.user.id
+        }, include: {
+            customer: true
+        }
+    });
 
     return (
         <Container>
@@ -24,9 +37,14 @@ export default async function Dashboard() {
                             </tr>
                         </thead>
                         <tbody>
-                            <DashboardTicket/>
+                            {tickets.map(ticket => (
+                                <DashboardTicket key={ticket.id} ticket={ticket} customer={ticket.customer}/>
+                            ))}
                         </tbody>
                     </table>
+                    {!tickets.length && (
+                        <h1 className="text-gray-900">No ticket was found...</h1>
+                    )}
                 </div>
             </main>
         </Container>

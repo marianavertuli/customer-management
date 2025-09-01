@@ -1,0 +1,32 @@
+{
+    "common": {
+        "form": {
+            "name": "Nome",
+            "email": "Email",
+            "address": "Endereço",
+            "description": "Descrição",
+            "phone": "Telefone",
+            "customerDetails": "Detalhes do client"
+        },
+        "close": "Fechar",
+        "register": "Registrar"
+    },
+    "moreInfo": {
+        "allRights": "Todos os direitos reservados a DevControl",
+        "websiteInfo": "Esse site foi criado usando NextJS 15"
+    },
+    "home": {
+        "manageYourCompany": "Gerencie sua empresa",
+        "manageYourClients": "Gerencie seus clientes"
+    },
+    "newTicket": {
+        "ticket": "Chamado",
+        "ticketName": "Nome do chamado",
+        "ticketNamePlaceholder": "Escreva o nome do ticket...",
+        "ticketDescriptionPlaceholder": "Descreva os detalhes do problema...",
+        "customerEmailPlaceholder": "Digite o e-mail do cliente...",
+        "openNewTicket": "Abra um novo chamado",
+        "selectedCustomer": "Cliente selecionado",
+        "lookForCustomer": "Procurar cliente"
+    }
+}

@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/input";
 import { api } from "@/lib/api";
+import { getLabelByLanguage } from "@/utils/language";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod";
@@ -40,19 +41,19 @@ export function FormTicket({customerId}: {customerId: string}) {
 
     return (
         <form className="bg-slate-200 mt-6 px-4 py-6 rounded" onSubmit={handleSubmit(handleRegisterTicket)}>
-            <label className="mb-1 font-medium text-lg">Ticket name</label>
+            <label className="mb-1 font-medium text-lg">{getLabelByLanguage("common.form.name")}</label>
             <Input
                 name="name"
-                placeholder="Type the ticket name..."
+                placeholder={getLabelByLanguage("newTicket.ticketNamePlaceholder")}
                 type="text"
                 register={register}
                 error={errors.name?.message}
             />
             
-            <label className="mb-1 font-medium text-lg">Description</label>
+            <label className="mb-1 font-medium text-lg">{getLabelByLanguage("common.form.description")}</label>
             <textarea
                 className="w-full border-2 border-gray-300 rounded-md h-24 resize-none px-2"
-                placeholder="Describe your issue details..."
+                placeholder={getLabelByLanguage("newTicket.ticketDescriptionPlaceholder")}
                 id="description"
                 {...register("description")}>
             </textarea>
@@ -64,7 +65,7 @@ export function FormTicket({customerId}: {customerId: string}) {
                 type="submit"
                 className="bg-blue-600 rounded-md text-white w-full h-11 px-2 font-bold cursor-pointer hover:scale-105 duration-200"
                 >
-                REGISTER TICKET
+                {getLabelByLanguage("commom.register")}
             </button>
         </form>
     )

@@ -1,0 +1,32 @@
+{
+    "common": {
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "address": "Address",
+            "description": "Description",
+            "phone": "Phone",
+            "customerDetails": "Customer details"
+        },
+        "close": "Close",
+        "register": "Register"
+    },
+    "moreInfo": {
+        "allRights": "All rights reserved to DevControl",
+        "websiteInfo": "This website was created using NextJS 15"
+    },
+    "home": {
+        "manageYourCompany": "Manage your company",
+        "manageYourClients": "Manage your clients"
+    },
+    "newTicket": {
+        "ticket": "Ticket",
+        "ticketName": "Ticket name",
+        "ticketNamePlaceholder": "Type the ticket name...",
+        "ticketDescriptionPlaceholder": "Describe your issue details...",
+        "customerEmailPlaceholder": "Type the customer e-mail...",
+        "openNewTicket": "Open new ticket",
+        "selectedCustomer": "Selected customer",
+        "lookForCustomer": "Look for customer"
+    }
+}

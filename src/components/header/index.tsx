@@ -1,11 +1,23 @@
 "use client"
 
+import { Languages, setSelectedLanguage, supportedLanguages } from "@/utils/language";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FiUser, FiLogOut, FiLoader, FiLock } from "react-icons/fi";
 
 export function Header() {
-    const { status, data } = useSession();
+    const { status } = useSession();
+    const router = useRouter();
+    const [ userLanguage, setUserLanguage] = useState<Languages | undefined>();
+
+    useEffect(() => {
+        const languageFromStorage = (window.localStorage.getItem("language") ?? 'EN') as Languages;
+        setUserLanguage(languageFromStorage);
+        setSelectedLanguage(languageFromStorage);
+    }, [userLanguage]);
+
 
     async function handleLogIn() {
         await signIn();
@@ -13,6 +25,13 @@ export function Header() {
 
     async function handleLogOut() {
         await signOut();
+    }
+
+    function handleChangeLanguage(e: ChangeEvent<HTMLSelectElement>) {
+        window.localStorage.setItem("language", e.target.value);
+        setUserLanguage(e.target.value as Languages);
+        setSelectedLanguage(e.target.value as Languages);
+        router.refresh();
     }
 
     return (
@@ -37,7 +56,12 @@ export function Header() {
                 )}
 
                 {status == 'authenticated' && (
-                    <div className="flex items-baseline gap-4">
+                    <div className="flex items-center gap-4">
+                        <select className="cursor-pointer py-2 px-1 border-gray-200 border-2 rounded" value={userLanguage} onChange={(e) => handleChangeLanguage(e)}>
+                            {supportedLanguages.map(lang => (
+                                <option key={lang.id} value={lang.id}>{lang.value}</option>
+                            ))}
+                        </select>
                         <Link href="/dashboard/all" className="hover:scale-110 duration-200">
                             <FiUser size={26} color="#4b5563"/>
                         </Link>

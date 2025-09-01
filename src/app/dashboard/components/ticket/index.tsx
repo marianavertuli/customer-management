@@ -1,9 +1,11 @@
 "use client"
 
 import { api } from "@/lib/api";
+import { ModalContext } from "@/providers/modal";
 import { Customer } from "@/utils/customer.type";
 import { Ticket } from "@/utils/ticket.type";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import { FiCheckSquare, FiFile } from "react-icons/fi";
 
 interface DashboardTicketProps {
@@ -14,6 +16,7 @@ interface DashboardTicketProps {
 export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
 
     const router = useRouter();
+    const { handleModalVisibility, setDetailsToTicket } = useContext(ModalContext);
 
     const getNewStatus = () => {
         return ticket.status === "CLOSED" ? "OPEN" : "CLOSED";
@@ -21,7 +24,7 @@ export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
 
     async function handleChangeStatus() {
         try {
-            const response = await api.patch("/api/ticket", {
+            await api.patch("/api/ticket", {
                 id: ticket.id,
                 status: getNewStatus()
             });
@@ -34,8 +37,11 @@ export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
         }
     }
 
-    async function handleEdit() {
-
+    async function handleShowModal() {
+        handleModalVisibility();
+        setDetailsToTicket({
+            customer, ticket
+        });
     }
 
     return (
@@ -52,9 +58,9 @@ export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
                 </td>
                 <td className="text-left">
                     <button onClick={handleChangeStatus} className="mr-2 cursor-pointer hover:scale-110 duration-200">
-                        <FiCheckSquare size={24} color="#a5b5a4"/>
+                        <FiCheckSquare size={24} color="#676b67"/>
                     </button>
-                    <button onClick={handleEdit} className="cursor-pointer hover:scale-110 duration-200">
+                    <button onClick={handleShowModal} className="cursor-pointer hover:scale-110 duration-200">
                         <FiFile size={24} color="#3B82F6"/>
                     </button>
                 </td>

@@ -56,3 +56,23 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Failed to create a new customer" }, { status: 400 });
     }
 }
+
+export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url);
+    const email = searchParams.get("email");
+    if (!email) {
+        return NextResponse.json({error: "Customer not found"}, { status: 400 });
+    }
+
+    try {
+        const customer = await prisma.customer.findFirst({
+            where: {
+                email: email
+            }
+        });
+
+        return NextResponse.json(customer);
+    } catch (err) {
+        return NextResponse.json({error: "An error has occured"}, { status: 400 });
+    }
+}

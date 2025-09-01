@@ -15,7 +15,7 @@ interface InputProps {
 export function Input({ type, placeholder, name, register, error, rules }: InputProps) {
     return (
         <>
-            <input className="w-full border-2 rounded-md h-11 px-2" 
+            <input className="w-full border-2 border-gray-300 rounded-md h-11 px-2" 
                 placeholder={placeholder}
                 type={type}
                 {...register(name, rules)}

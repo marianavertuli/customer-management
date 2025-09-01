@@ -41,14 +41,14 @@ export default async function NewTicket() {
             return;
         }
 
-        redirect("/dashboard");
+        redirect("/dashboard/all");
     }
 
     return (
         <Container>
             <main className="mt-9 mb-2">
                 <div className="flex items-center gap-3">
-                    <Link href="/dashboard" className="text-white px-4 py-1 rounded bg-gray-900 hover:scale-105 duration-200">BACK</Link>
+                    <Link href="/dashboard/all" className="text-white px-4 py-1 rounded bg-gray-900 hover:scale-105 duration-200">BACK</Link>
                     <h1 className="text-3xl font-bold">New Ticket</h1>
                 </div>
 

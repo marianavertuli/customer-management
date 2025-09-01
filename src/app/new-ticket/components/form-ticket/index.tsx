@@ -2,12 +2,16 @@
 
 import { Input } from "@/components/input";
 import { api } from "@/lib/api";
+import { LoaderContext } from "@/providers/loader";
 import { getLabelByLanguage } from "@/utils/language";
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
 import z from "zod";
 
 export function FormTicket({customerId}: {customerId: string}) {
+
+    const { handleLoaderVisibility } = useContext(LoaderContext);
 
     const schema = z.object({
         name: z.string().min(1, "This field is mandatory."),
@@ -22,6 +26,7 @@ export function FormTicket({customerId}: {customerId: string}) {
 
     async function handleRegisterTicket(data: FormData) {
         try {
+            handleLoaderVisibility(true);
             await api.post("/api/ticket", {
                 name: data.name,
                 description: data.description,
@@ -29,12 +34,13 @@ export function FormTicket({customerId}: {customerId: string}) {
             });
             setValue("name", "");
             setValue("description", "");
-            
             window.alert("The ticket was successfully created!");
 
         } catch (err) {
             console.log(err);
             window.alert("An error has occurred. Please, try again later");
+        } finally {
+            handleLoaderVisibility(false);
         }
 
     }
@@ -65,7 +71,7 @@ export function FormTicket({customerId}: {customerId: string}) {
                 type="submit"
                 className="bg-blue-600 rounded-md text-white w-full h-11 px-2 font-bold cursor-pointer hover:scale-105 duration-200"
                 >
-                {getLabelByLanguage("commom.register")}
+                {getLabelByLanguage("common.register")}
             </button>
         </form>
     )

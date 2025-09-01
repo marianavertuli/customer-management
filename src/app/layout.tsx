@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { AuthProvider } from "@/providers/auth";
 import { ModalProvider } from "@/providers/modal";
+import { LoaderProvider } from "@/providers/loader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,12 +33,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <ModalProvider>
-            <Header/>
-              {children}
-            <Footer/>
-          </ModalProvider>
-
+          <LoaderProvider>
+            <ModalProvider>
+              <Header/>
+                {children}
+              <Footer/>
+            </ModalProvider>
+          </LoaderProvider>
         </AuthProvider>
       </body>
     </html>

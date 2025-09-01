@@ -2,8 +2,10 @@
 
 import { Input } from "@/components/input";
 import { api } from "@/lib/api";
+import { LoaderContext } from "@/providers/loader";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -23,6 +25,8 @@ type FormData = z.infer<typeof schema>;
 
 export function CustomerForm() {
 
+    const { handleLoaderVisibility } = useContext(LoaderContext);
+
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
@@ -30,16 +34,24 @@ export function CustomerForm() {
     const router = useRouter();
 
     async function handleRegisterCustomer({ name, email, phone, address }: FormData) {
-        const res = await api.post("/api/customer",  {
-            name, email, phone, address
-        });
-        
-        if (res.status === 200) {
-            router.refresh();
-            router.replace("/dashboard/customers");
-        }
-        else
+        try {
+            handleLoaderVisibility(true);
+            const res = await api.post("/api/customer",  {
+                name, email, phone, address
+            });
+            
+            if (res.status === 200) {
+                router.refresh();
+                router.replace("/dashboard/customers");
+            }
+            else
+                window.alert("An error has occured. Please, try again later");
+        } catch (err) {
             window.alert("An error has occured. Please, try again later");
+        } finally {
+            handleLoaderVisibility(false);
+        }
+
     }
 
     return (

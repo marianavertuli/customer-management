@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { AuthProvider } from "@/providers/auth";
 import { ModalProvider } from "@/providers/modal";
 import { LoaderProvider } from "@/providers/loader";
+import { AlertProvider } from "@/providers/alert";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,11 +35,13 @@ export default function RootLayout({
       >
         <AuthProvider>
           <LoaderProvider>
-            <ModalProvider>
-              <Header/>
-                {children}
-              <Footer/>
-            </ModalProvider>
+            <AlertProvider>
+              <ModalProvider>
+                <Header/>
+                  {children}
+                <Footer/>
+              </ModalProvider>
+            </AlertProvider>
           </LoaderProvider>
         </AuthProvider>
       </body>

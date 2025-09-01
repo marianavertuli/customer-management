@@ -1,9 +1,8 @@
 "use client"
 
-import { Alert, AlertProps } from "@/components/alert";
 import { api } from "@/lib/api";
+import { AlertContext } from "@/providers/alert";
 import { LoaderContext } from "@/providers/loader";
-import { handleAlert } from "@/utils/alert";
 import { Customer } from "@/utils/customer.type";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
@@ -12,7 +11,7 @@ export function CustomersCard({name, phone, email, id}: Customer) {
 
     const router = useRouter();
     const { handleLoaderVisibility } = useContext(LoaderContext);
-    const [alert, setAlert] = useState<AlertProps | undefined>();
+    const { setAlert } = useContext(AlertContext);
 
     async function handleDeleteCustomer() {
         try {
@@ -25,9 +24,10 @@ export function CustomersCard({name, phone, email, id}: Customer) {
             router.refresh();
 
         } catch (err) {
-            const msg = "An error has occured while attempting to remove customer. Please, try again later"
-            handleAlert( setAlert, msg);
-
+            setAlert({
+                message: "An error has occured while attempting to remove customer. Please, try again later",
+                type: 'error'
+            });      
         } finally {
             handleLoaderVisibility(false);
         }
@@ -50,7 +50,6 @@ export function CustomersCard({name, phone, email, id}: Customer) {
                     REMOVE
                 </button>
             </article>
-            {!!alert && (<Alert message={alert.message} type={alert.type}/>)}
         </>
     )
 }

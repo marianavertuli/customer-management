@@ -1,13 +1,12 @@
 "use client"
 
-import { Alert, AlertProps } from "@/components/alert";
 import { Input } from "@/components/input";
 import { api } from "@/lib/api";
+import { AlertContext } from "@/providers/alert";
 import { LoaderContext } from "@/providers/loader";
-import { handleAlert } from "@/utils/alert";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -27,8 +26,8 @@ type FormData = z.infer<typeof schema>;
 
 export function CustomerForm() {
 
-    const [alert, setAlert] = useState<AlertProps | undefined>();
     const { handleLoaderVisibility } = useContext(LoaderContext);
+    const { setAlert } = useContext(AlertContext);
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(schema)
@@ -37,6 +36,7 @@ export function CustomerForm() {
     const router = useRouter();
 
     async function handleRegisterCustomer({ name, email, phone, address }: FormData) {
+        const errorMsg = "An error has occured. Please, try again later";
         try {
             handleLoaderVisibility(true);
             const res = await api.post("/api/customer",  {
@@ -48,12 +48,16 @@ export function CustomerForm() {
                 router.replace("/dashboard/customers");
             }
             else {
-                const msg = "An error has occured. Please, try again later"
-                handleAlert( setAlert, msg);
+                setAlert({
+                    message: errorMsg,
+                    type: 'error'
+                });
             }
         } catch (err) {
-            const msg = "An error has occured. Please, try again later"
-            handleAlert( setAlert, msg);
+            setAlert({
+                message: errorMsg,
+                type: 'error'
+            });        
         } finally {
             handleLoaderVisibility(false);
         }
@@ -108,7 +112,6 @@ export function CustomerForm() {
             >
                 REGISTER
             </button>
-            {!!alert && (<Alert message={alert.message} type={alert.type}/>)}
         </form>
     )
 }

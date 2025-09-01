@@ -1,6 +1,7 @@
 "use client"
 
 import { api } from "@/lib/api";
+import { AlertContext } from "@/providers/alert";
 import { ModalContext } from "@/providers/modal";
 import { Customer } from "@/utils/customer.type";
 import { Ticket } from "@/utils/ticket.type";
@@ -16,6 +17,7 @@ interface DashboardTicketProps {
 export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
     const router = useRouter();
     const { handleModalVisibility, setDetailsToTicket } = useContext(ModalContext);
+    const { setAlert } = useContext(AlertContext);
 
     const getNewStatus = () => {
         return ticket.status === "CLOSED" ? "OPEN" : "CLOSED";
@@ -27,10 +29,18 @@ export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
                 id: ticket.id,
                 status: getNewStatus()
             });
-
             router.refresh();
+            setAlert({
+                message: "Status successfully changed!",
+                type: 'success'
+            });   
+
         } catch (err) {
-            window.alert("An error has occured. Please, try again later.");
+            const msg = "An error has occured. Please, try again later.";
+            setAlert({
+                message: msg,
+                type: 'error'
+            });
         }
     }
 

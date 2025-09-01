@@ -14,7 +14,6 @@ interface DashboardTicketProps {
 }
 
 export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
-
     const router = useRouter();
     const { handleModalVisibility, setDetailsToTicket } = useContext(ModalContext);
 
@@ -30,9 +29,7 @@ export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
             });
 
             router.refresh();
-
         } catch (err) {
-            console.log(err);
             window.alert("An error has occured. Please, try again later.");
         }
     }

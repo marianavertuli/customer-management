@@ -1,11 +1,13 @@
 "use client"
 
+import { Alert, AlertProps } from "@/components/alert";
 import { Input } from "@/components/input";
 import { api } from "@/lib/api";
 import { LoaderContext } from "@/providers/loader";
+import { handleAlert } from "@/utils/alert";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -25,6 +27,7 @@ type FormData = z.infer<typeof schema>;
 
 export function CustomerForm() {
 
+    const [alert, setAlert] = useState<AlertProps | undefined>();
     const { handleLoaderVisibility } = useContext(LoaderContext);
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
@@ -44,10 +47,13 @@ export function CustomerForm() {
                 router.refresh();
                 router.replace("/dashboard/customers");
             }
-            else
-                window.alert("An error has occured. Please, try again later");
+            else {
+                const msg = "An error has occured. Please, try again later"
+                handleAlert( setAlert, msg);
+            }
         } catch (err) {
-            window.alert("An error has occured. Please, try again later");
+            const msg = "An error has occured. Please, try again later"
+            handleAlert( setAlert, msg);
         } finally {
             handleLoaderVisibility(false);
         }
@@ -102,6 +108,7 @@ export function CustomerForm() {
             >
                 REGISTER
             </button>
+            {!!alert && (<Alert message={alert.message} type={alert.type}/>)}
         </form>
     )
 }

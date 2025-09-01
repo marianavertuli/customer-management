@@ -61,12 +61,12 @@ export default async function NewTicket() {
 
                     {!!customers?.length && (
                         <>
-                        <label className="mb-1 font-medium text-lg">Select the client</label>
-                        {customers.map(customer => (
-                            <select key={customer.id} required name="customerId" className="w-full border-2 rounded-md px-2 mb-2 h-11 resize-none bg-white">
-                                <option value={customer.id}>{customer.name}</option>
-                            </select>
-                        ))}
+                        <label className="mb-1 font-medium text-lg">Select the client</label>                            
+                        <select  required name="customerId" className="w-full border-2 rounded-md px-2 mb-2 h-11 resize-none bg-white">
+                            {customers.map(customer => (
+                                    <option key={customer.id} value={customer.id}>{customer.name}</option>
+                            ))}
+                        </select>
                         </>
                     )}
 

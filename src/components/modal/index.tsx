@@ -15,12 +15,12 @@ export function Modal() {
     }
 
     return (
-        <section className="absolute bg-gray-900/70 w-full min-h-screen" onClick={(e) => handleModalClick(e)}>
+        <section className="absolute bg-dark-gray/70 w-full min-h-screen" onClick={(e) => handleModalClick(e)}>
             <div className="absolute inset-0 flex items-center justify-center">
                 <div ref={modalRef} className="bg-white shadow-lg w-4/5 md:w-1/2 max-w-2xl p-3 rounded">
                     <div className="flex items-center justify-between mb-4">
                         <h1 className="font-bold text-lg md:text-2xl">Ticket details</h1>
-                        <button onClick={handleModalVisibility} className="bg-red-600 p-1 px-2 text-white font-bold rounded cursor-pointer hover:scale-105 duration-200">
+                        <button onClick={handleModalVisibility} className="bg-error p-1 px-2 text-white font-bold rounded cursor-pointer hover:scale-105 duration-200">
                             Close
                         </button>
                     </div>

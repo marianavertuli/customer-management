@@ -48,7 +48,7 @@ export default async function NewTicket() {
         <Container>
             <main className="mt-9 mb-2">
                 <div className="flex items-center gap-3">
-                    <Link href="/dashboard/all" className="text-white px-4 py-1 rounded bg-gray-900 hover:scale-105 duration-200">BACK</Link>
+                    <Link href="/dashboard/all" className="text-white px-4 py-1 rounded bg-dark-gray hover:scale-105 duration-200">BACK</Link>
                     <h1 className="text-3xl font-bold">New Ticket</h1>
                 </div>
 
@@ -72,13 +72,13 @@ export default async function NewTicket() {
 
                     {!customers.length && (
                         <Link href="/dashboard/customers/new">
-                            You don't have any customer yet... <span className="text-blue-600 font-bold">Register client</span>
+                            You don't have any customer yet... <span className="text-primary-main font-bold">Register client</span>
                         </Link>
                     )}
 
                     <button 
                         type="submit" 
-                        className="bg-blue-600 text-white font-bold px-2 h-11 rounded-md my-4 cursor-pointer hover:scale-[102%] duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-primary-main text-white font-bold px-2 h-11 rounded-md my-4 cursor-pointer hover:scale-[102%] duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={customers.length === 0}>
                         REGISTER
                     </button>

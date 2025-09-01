@@ -14,9 +14,8 @@ export function Alert() {
                 <h2 className="text-white">{message}</h2>
                 <FiX 
                     onClick={() => setAlertVisibility()} 
-                    className="cursor-pointer hover:scale-110 duration-200" 
+                    className="cursor-pointer text-white hover:scale-110 duration-200" 
                     size={22} 
-                    color="#FFF"
                 />
             </div>
         </div>

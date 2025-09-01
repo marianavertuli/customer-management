@@ -53,22 +53,22 @@ export function DashboardTicket({ticket, customer}: DashboardTicketProps) {
 
     return (
         <>
-            <tr className="border-b-2 border-b-slate-200 h-16 last:border-b-0 bg-slate-100 hover:bg-gray-200 duration-200">
+            <tr className="border-b-2 border-b-slate-200 h-16 last:border-b-0 bg-slate-100 hover:bg-light-gray duration-200">
                 <td className="text-left pl-1">{customer?.name}</td>
                 <td className="text-left hidden sm:table-cell">{ticket?.created_at?.toLocaleDateString("pt-br")}</td>
                 <td className="text-left">
                     {ticket?.status === "CLOSED" ? (
-                        <span className="bg-red-700 px-2 py-1 rounded-md text-sm text-white font-bold">{ticket?.status}</span>
+                        <span className="bg-error px-2 py-1 rounded-md text-sm text-white font-bold">{ticket?.status}</span>
                     ) : (
-                        <span className="bg-green-700 px-2 py-1 rounded-md text-sm text-white font-bold">{ticket?.status}</span>
+                        <span className="bg-success px-2 py-1 rounded-md text-sm text-white font-bold">{ticket?.status}</span>
                     )}
                 </td>
                 <td className="text-left">
                     <button onClick={handleChangeStatus} className="mr-2 cursor-pointer hover:scale-110 duration-200">
-                        <FiCheckSquare size={24} color="#676b67"/>
+                        <FiCheckSquare className="text-mid-gray" size={24}/>
                     </button>
                     <button onClick={handleShowModal} className="cursor-pointer hover:scale-110 duration-200">
-                        <FiFile size={24} color="#3B82F6"/>
+                        <FiFile className="text-primary-main" size={24}/>
                     </button>
                 </td>
             </tr>

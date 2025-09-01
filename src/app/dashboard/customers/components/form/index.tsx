@@ -108,7 +108,7 @@ export function CustomerForm() {
 
             <button 
                 type="submit"
-                className="bg-blue-600 my-4 px-2 h-11 rounded text-white font-bold cursor-pointer hover:scale-[102%] duration-200"
+                className="bg-primary-main my-4 px-2 h-11 rounded text-white font-bold cursor-pointer hover:scale-[102%] duration-200"
             >
                 REGISTER
             </button>

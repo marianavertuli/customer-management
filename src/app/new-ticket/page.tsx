@@ -65,7 +65,7 @@ export default function NewTicket() {
                 {!customer ? (
                     <form 
                     onSubmit={handleSubmit(handleSearchCustomer)}
-                    className="bg-slate-200 py-12 px-2 rounded border-2 border-gray-200">
+                    className="bg-slate-200 py-12 px-2 rounded border-2 border-light-gray">
                         <div className="flex flex-col gap-3">
                             <Input 
                                 name="email" 
@@ -76,22 +76,22 @@ export default function NewTicket() {
                             />
                             <button 
                                 type='submit'
-                                className="bg-blue-600 text-white font-bold flex flex-row gap-3 px-2 h-11 items-center justify-center rounded-md hover:scale-[102%] duration-200 cursor-pointer"
+                                className="bg-primary-main text-white font-bold flex flex-row gap-3 px-2 h-11 items-center justify-center rounded-md hover:scale-[102%] duration-200 cursor-pointer"
                             >
                                 {getLabelByLanguage("newTicket.lookForCustomer")}
-                                <FiSearch size={24} color="#FFF"/>
+                                <FiSearch  className="text-white" size={24}/>
                             </button>
                         </div>
                     </form>
                 ) : (
                     <>
-                        <div className="bg-slate-200 py-6 px-4 rounded border-2 border-gray-200 flex items-center justify-between">
+                        <div className="bg-slate-200 py-6 px-4 rounded border-2 border-light-gray flex items-center justify-between">
                             <p className="text-lg"><strong>{getLabelByLanguage("newTicket.selectedCustomer")}: </strong> {customer.name} </p>
                             <button
                                 onClick={handleClearCustomer}
                                 className="h-11 px-2 flex items-center justify-center rounded cursor-pointer hover:scale-110 duration-200"
                             >
-                                <FiX size={30} color="#e7000b"/>
+                                <FiX size={30} className="text-error"/>
                             </button>
                         </div>
                         <FormTicket customerId={customer.id}/>

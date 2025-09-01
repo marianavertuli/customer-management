@@ -58,18 +58,18 @@ export function FormTicket({customerId}: {customerId: string}) {
             
             <label className="mb-1 font-medium text-lg">{getLabelByLanguage("common.form.description")}</label>
             <textarea
-                className="w-full border-2 border-gray-300 rounded-md h-24 resize-none px-2"
+                className="w-full border-2 border-light-gray rounded-md h-24 resize-none px-2"
                 placeholder={getLabelByLanguage("newTicket.ticketDescriptionPlaceholder")}
                 id="description"
                 {...register("description")}>
             </textarea>
             {errors.description?.message && (
-                <p className="text-red-600 my-1 font-bold text-xs mt-1 mb-4">{errors.description?.message}</p>
+                <p className="text-error my-1 font-bold text-xs mt-1 mb-4">{errors.description?.message}</p>
             )}
 
             <button 
                 type="submit"
-                className="bg-blue-600 rounded-md text-white w-full h-11 px-2 font-bold cursor-pointer hover:scale-105 duration-200"
+                className="bg-primary-main rounded-md text-white w-full h-11 px-2 font-bold cursor-pointer hover:scale-105 duration-200"
                 >
                 {getLabelByLanguage("common.register")}
             </button>

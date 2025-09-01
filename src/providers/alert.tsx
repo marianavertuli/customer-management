@@ -42,13 +42,13 @@ export const AlertProvider = ({children}: {children: ReactNode}) => {
     const background = (): string => {
         switch (type) {
             case 'error':
-                return 'bg-red-700';
+                return 'bg-error';
             case 'success':
-                return 'bg-green-700';
+                return 'bg-success';
             case 'warning':
-                return 'bg-yellow-600'
+                return 'bg-warning'
             default:
-                return 'bg-green-700'
+                return 'bg-success'
         }
     }
 

@@ -35,7 +35,7 @@ export function CustomersCard({name, phone, email, id}: Customer) {
 
     return (
         <>
-            <article className="flex flex-col bg-gray-100 border-2 p-2 rounded-lg gap-2 hover:scale-105 duration-200">
+            <article className="flex flex-col bg-light-gray border-2 p-2 rounded-lg gap-2 hover:scale-105 duration-200">
                 <h2>
                     <a className="font-bold">Name:</a> {name}
                 </h2>
@@ -46,7 +46,7 @@ export function CustomersCard({name, phone, email, id}: Customer) {
                 </p>
                 <button 
                     onClick={handleDeleteCustomer}
-                    className="bg-red-600 px-4 rounded text-white mt-2 self-start cursor-pointer hover:scale-110 duration-200">
+                    className="bg-error px-4 rounded text-white mt-2 self-start cursor-pointer hover:scale-110 duration-200">
                     REMOVE
                 </button>
             </article>

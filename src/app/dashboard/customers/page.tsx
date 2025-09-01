@@ -20,7 +20,7 @@ export default async function Customers() {
                     <h1 className="text-3xl font-bold">
                         My Customers
                     </h1>
-                    <Link href="/dashboard/customers/new" className="bg-blue-600 text-white font-bold px-4 py-1 rounded hover:scale-110 duration-200">
+                    <Link href="/dashboard/customers/new" className="bg-primary-main text-white font-bold px-4 py-1 rounded hover:scale-110 duration-200">
                         New Customer
                 </Link>
                 </div>
@@ -33,7 +33,7 @@ export default async function Customers() {
                     )}
                 </section>
                 {!customers?.length && (
-                    <h1 className="text-gray-800">You don't have any registered customer yet...</h1>
+                    <h1 className="text-dark-gray">You don't have any registered customer yet...</h1>
                 )}
             </main>
         </Container>

@@ -11,8 +11,8 @@ export function ButtonRefresh() {
     }
 
     return (
-        <button onClick={handleSubmit} className="bg-blue-600 px-4 py-1 rounded cursor-pointer hover:scale-110 duration-200">
-            <FiRefreshCcw size={24} color="#FFF"/>
+        <button onClick={handleSubmit} className="bg-primary-main px-4 py-1 rounded cursor-pointer hover:scale-110 duration-200">
+            <FiRefreshCcw className="text-white" size={24}/>
         </button>
     )
 }

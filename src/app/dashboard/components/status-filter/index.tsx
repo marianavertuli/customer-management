@@ -12,7 +12,7 @@ export function StatusFilter({currentStatus}: { currentStatus: string}) {
     }
 
     return (
-        <select className="py-1 px-4 rounded cursor-pointer font-bold border-gray-300 border-2" onChange={(e) => handleFilterSelection(e)} name="status" value={currentStatus ?? 'ALL'}>
+        <select className="py-1 px-4 rounded cursor-pointer font-bold border-light-gray border-2" onChange={(e) => handleFilterSelection(e)} name="status" value={currentStatus ?? 'ALL'}>
             <option value="all">ALL</option>
             <option value="open">OPEN</option>
             <option value="closed">CLOSED</option>

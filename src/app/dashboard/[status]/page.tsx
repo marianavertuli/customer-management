@@ -37,7 +37,7 @@ export default async function DashboardStatus({params}: {params: Promise<{status
                     <div className="flex items-center gap-3">
                         <StatusFilter currentStatus={status}/>
                         <ButtonRefresh/>
-                        <Link href="/dashboard/new" className="bg-blue-600 px-4 py-1 rounded text-white hover:scale-110 duration-200">Open new ticket</Link>
+                        <Link href="/dashboard/new" className="bg-primary-main px-4 py-1 rounded text-white hover:scale-110 duration-200">Open new ticket</Link>
                     </div>
                 </div>
                 <div>
@@ -57,7 +57,7 @@ export default async function DashboardStatus({params}: {params: Promise<{status
                         </tbody>
                     </table>
                     {!tickets.length && (
-                        <h1 className="text-gray-900">No ticket was found...</h1>
+                        <h1 className="text-dark-gray">No ticket was found...</h1>
                     )}
                 </div>
             </main>

@@ -39,34 +39,34 @@ export function Header() {
             <div className="w-full flex items-center justify-between max-w-11/12 mx-auto">
                 <Link href="/">
                     <h1 className="font-bold text-2xl hover:tracking-widest duration-200">
-                        <span className="text-blue-600">DEV</span> CONTROL
+                        <span className="text-primary-main">DEV</span> CONTROL
                     </h1>
                 </Link>
 
                 {status === 'loading' && (
                     <button className="animate-spin">
-                        <FiLoader size={26} color="#4b5563"/>
+                        <FiLoader className="text-mid-gray" size={26}/>
                     </button>
                 )}
 
                 {status === 'unauthenticated' && (
                     <button onClick={handleLogIn} className="cursor-pointer hover:scale-110 duration-200">
-                        <FiLock size={26} color="#4b5563"/>
+                        <FiLock className="text-mid-gray" size={26}/>
                     </button>
                 )}
 
                 {status == 'authenticated' && (
                     <div className="flex items-center gap-4">
-                        <select className="cursor-pointer py-2 px-1 border-gray-200 border-2 rounded" value={userLanguage} onChange={(e) => handleChangeLanguage(e)}>
+                        <select className="cursor-pointer py-2 px-1 border-light-gray border-2 rounded" value={userLanguage} onChange={(e) => handleChangeLanguage(e)}>
                             {supportedLanguages.map(lang => (
                                 <option key={lang.id} value={lang.id}>{lang.value}</option>
                             ))}
                         </select>
                         <Link href="/dashboard/all" className="hover:scale-110 duration-200">
-                            <FiUser size={26} color="#4b5563"/>
+                            <FiUser className="text-primary-main" size={26}/>
                         </Link>
                         <button onClick={handleLogOut} className="cursor-pointer hover:scale-110 duration-200">
-                            <FiLogOut size={26} color="#4b5563"/>
+                            <FiLogOut className="text-mid-gray" size={26}/>
                         </button>
                     </div>
                 )}
